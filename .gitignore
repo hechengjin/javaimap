@@ -1,3 +1,4 @@
 hcj-imap-build/target/*
 hcj-imap-build/hcj-imap-build.iml
 hcj-imap-build/.idea/*
+hcj-imap-build/testmail/*

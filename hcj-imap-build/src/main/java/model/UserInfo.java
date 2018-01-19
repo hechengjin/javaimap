@@ -11,7 +11,6 @@ public class UserInfo {
     String host;
     int port;
     String protocol;
-    ProxyInfo proxinfo;
     boolean ssl;
 
     public String getFullname() {
@@ -62,13 +61,6 @@ public class UserInfo {
         this.port = port;
     }
 
-    public ProxyInfo getProxinfo() {
-        return proxinfo;
-    }
-
-    public void setProxinfo(ProxyInfo proxinfo) {
-        this.proxinfo = proxinfo;
-    }
 
     public String getProtocol() {
         return protocol;

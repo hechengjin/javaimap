@@ -4,8 +4,8 @@ package model;
  * Created by hechengjin on 18-1-16.
  */
 public class ProxyInfo {
-    String ip;
-    int port;
+    String ip = "";
+    int port = 0;
 
     public String getIp() {
         return ip;
