@@ -1,8 +1,8 @@
 package implement;
 
-import interfaces.IMailProcLogic;
-import model.FolderInfo;
-import model.MailInfo;
+import interfaces.MailProcLogic;
+import model.FolderInfoImap;
+import model.MailInfoImap;
 import model.UserInfo;
 import model.TaskInfo;
 
@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * Created by hechengjin on 18-1-16.
  */
-public class MailProcLogicIMAPJAVAImpl implements IMailProcLogic {
+public class MailProcLogicIMAPJAVAImpl implements MailProcLogic {
     UserInfo userInfo;
-    FolderInfo folderInfo;
+    FolderInfoImap folderInfo;
     TaskInfo taskInfo;
 
     public UserInfo getUserInfo() {
@@ -24,11 +24,11 @@ public class MailProcLogicIMAPJAVAImpl implements IMailProcLogic {
         this.userInfo = userInfo;
     }
 
-    public FolderInfo getFolderInfo() {
+    public FolderInfoImap getFolderInfo() {
         return folderInfo;
     }
 
-    public void setFolderInfo(FolderInfo folderInfo) {
+    public void setFolderInfo(FolderInfoImap folderInfo) {
         this.folderInfo = folderInfo;
     }
 
@@ -52,39 +52,39 @@ public class MailProcLogicIMAPJAVAImpl implements IMailProcLogic {
         return false;
     }
 
-    public boolean folderExist(FolderInfo fetchFolderInfo) {
+    public boolean folderExist(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public boolean addFolder(FolderInfo fetchFolderInfo) {
+    public boolean addFolder(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public boolean delFolder(FolderInfo fetchFolderInfo) {
+    public boolean delFolder(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public boolean renameFolder(FolderInfo fetchFolderInfo) {
+    public boolean renameFolder(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public List<FolderInfo> getＡllＦolder(UserInfo userInfo) {
+    public List<FolderInfoImap> getＡllＦolder(UserInfo userInfo) {
         return null;
     }
 
-    public boolean mailExist(MailInfo mailInfo) {
+    public boolean mailExist(MailInfoImap mailInfo) {
         return false;
     }
 
-    public boolean addMail(MailInfo mailInfo) {
+    public boolean addMail(MailInfoImap mailInfo) {
         return false;
     }
 
-    public boolean delMail(MailInfo mailInfo) {
+    public boolean delMail(MailInfoImap mailInfo) {
         return false;
     }
 
-    public List<MailInfo> getFolderMails(FolderInfo folderInfo) {
+    public List<MailInfoImap> getFolderMails(FolderInfoImap folderInfo) {
         return null;
     }
 
@@ -96,5 +96,7 @@ public class MailProcLogicIMAPJAVAImpl implements IMailProcLogic {
 
     }
 
+    public void close() {
 
+    }
 }

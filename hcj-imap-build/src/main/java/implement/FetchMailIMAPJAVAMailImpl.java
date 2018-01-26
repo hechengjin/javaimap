@@ -5,8 +5,8 @@ import com.sun.mail.imap.IMAPStore;
 import common.ErrorCode;
 import common.ErrorMessage;
 import handel.CaculateStream;
-import interfaces.IFetchMailProcess;
-import interfaces.IMailProcLogic;
+import interfaces.FetchMailProcess;
+import interfaces.MailProcLogic;
 import model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,21 +22,21 @@ import java.util.Properties;
 /**
  * Created by hechengjin on 18-1-16.
  */
-public class FetchMailIMAPJAVAMailImpl implements IFetchMailProcess {
+public class FetchMailIMAPJAVAMailImpl implements FetchMailProcess {
     private static Logger logger = LoggerFactory.getLogger("FetchMailIMAPJAVAMailImpl");
 
     Session session = null;
     IMAPFolder folder = null;
     IMAPStore store = null;
     Folder[] allFolder = null;
-    List<FolderInfo> localＦolders = null;
-    List<FolderInfo> localtoＤelＦolders=new ArrayList<FolderInfo>();
-    List<FolderInfo> localtoＡddＦolders=new ArrayList<FolderInfo>();
+    List<FolderInfoImap> localＦolders = null;
+    List<FolderInfoImap> localtoＤelＦolders=new ArrayList<FolderInfoImap>();
+    List<FolderInfoImap> localtoＡddＦolders=new ArrayList<FolderInfoImap>();
     List<MimeMessageEx> tofetchＭails = new ArrayList<MimeMessageEx>();
-    List<MailInfo> localtoＤelMails = new ArrayList<MailInfo>();
-    IMailProcLogic mailＰroclogic = null;
+    List<MailInfoImap> localtoＤelMails = new ArrayList<MailInfoImap>();
+    MailProcLogic mailＰroclogic = null;
     UserInfo userInfo = null;
-    FetchMailIMAPJAVAMailImpl(IMailProcLogic maillogic) {
+    FetchMailIMAPJAVAMailImpl(MailProcLogic maillogic) {
         mailＰroclogic = maillogic;
     }
 
@@ -106,18 +106,18 @@ public class FetchMailIMAPJAVAMailImpl implements IFetchMailProcess {
          }
         for (int i = 0; i < allFolder.length; i++) {
             if(isＡddＦolder(allFolder[i].getFullName())){
-                FolderInfo folderInfo = new FolderInfo();
+                FolderInfoImap folderInfo = new FolderInfoImap();
                 folderInfo.setFolderＮame(allFolder[i].getName());
                 folderInfo.setPath(allFolder[i].getFullName());
                 localtoＡddＦolders.add(folderInfo);
             }
         }
         //对添加和删除的邮件夹分别进行本地处理和jar包处理
-        for (FolderInfo folderInfo :localtoＤelＦolders ) {
+        for (FolderInfoImap folderInfo :localtoＤelＦolders ) {
             mailＰroclogic.delFolder(folderInfo);
             //jar
         }
-        for (FolderInfo folderInfo :localtoＡddＦolders ) {
+        for (FolderInfoImap folderInfo :localtoＡddＦolders ) {
             mailＰroclogic.addFolder(folderInfo);
             //jar
         }
@@ -137,12 +137,12 @@ public class FetchMailIMAPJAVAMailImpl implements IFetchMailProcess {
 //                int size = folder.getMessageCount();
                 Message[] messages = folder.getMessages();
 
-                FolderInfo folderInfo = new FolderInfo();
+                FolderInfoImap folderInfo = new FolderInfoImap();
                 folderInfo.setFolderＮame(allFolder[i].getName());
                 folderInfo.setPath(allFolder[i].getFullName());
                 for (int j = 0; j < messages.length; j++) {
 //                    Message mimeMessage = messages[j];
-                    MailInfo mailInfo = new MailInfo();
+                    MailInfoImap mailInfo = new MailInfoImap();
                     MimeMessage mimeMessage = (MimeMessage) messages[j];
 //                    String from = mimeMessage.getFrom()[0].toString();
 //                    String subject = mimeMessage.getSubject();
@@ -244,7 +244,7 @@ public class FetchMailIMAPJAVAMailImpl implements IFetchMailProcess {
         }
     }
 
-    private boolean existMail(IMAPFolder folder, Message[] messages, MailInfo mailInfo) throws MessagingException{
+    private boolean existMail(IMAPFolder folder, Message[] messages, MailInfoImap mailInfo) throws MessagingException{
         for (int j = 0; j < messages.length; j++) {
             MimeMessage mimeMessage = (MimeMessage) messages[j];
             Long Uid = folder.getUID(mimeMessage);
@@ -261,19 +261,19 @@ public class FetchMailIMAPJAVAMailImpl implements IFetchMailProcess {
                 folder = (IMAPFolder)store.getFolder(allFolder[i].getFullName());
                 folder.open(Folder.READ_WRITE);
                 Message[] messages = folder.getMessages();
-                FolderInfo folderInfo = new FolderInfo();
+                FolderInfoImap folderInfo = new FolderInfoImap();
                 folderInfo.setPath(folder.getFullName());
                 folderInfo.setFolderＮame(folder.getName());
                 folderInfo.setUserFullName(userInfo.getFullname());
-                List<MailInfo> folderMails = mailＰroclogic.getFolderMails(folderInfo);
-                for (MailInfo mailInfo : folderMails){
+                List<MailInfoImap> folderMails = mailＰroclogic.getFolderMails(folderInfo);
+                for (MailInfoImap mailInfo : folderMails){
                     if(!existMail(folder,messages, mailInfo)){
                         localtoＤelMails.add(mailInfo);
                     }
                 }
             }
         }
-        for (MailInfo mailInfo : localtoＤelMails){
+        for (MailInfoImap mailInfo : localtoＤelMails){
             //jar
             //本地
             mailＰroclogic.delMail(mailInfo);

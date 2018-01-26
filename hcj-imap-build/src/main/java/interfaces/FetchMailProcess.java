@@ -1,8 +1,7 @@
 package interfaces;
 
-import common.ErrorCode;
 import common.ErrorMessage;
-import model.FolderInfo;
+import model.FolderInfoImap;
 import model.ProxyInfo;
 import model.UserInfo;
 
@@ -12,9 +11,9 @@ import java.io.IOException;
 /**
  * Created by hechengjin on 18-1-16.
  */
-public abstract interface IFetchMailProcess {
+public abstract interface FetchMailProcess {
     UserInfo userInfo = null;
-    FolderInfo folderInfo = null;
+    FolderInfoImap folderInfo = null;
     String mailUids = null;
 
     //登录接口

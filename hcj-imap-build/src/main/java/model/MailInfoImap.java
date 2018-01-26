@@ -3,7 +3,7 @@ package model;
 /**
  * Created by hechengjin on 18-1-16.
  */
-public class MailInfo {
+public class MailInfoImap {
     String userＮame;
     String path;
     String Uid;

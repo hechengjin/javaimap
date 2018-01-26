@@ -1,10 +1,11 @@
 package implement;
 
-import interfaces.IMailProcLogic;
-import model.FolderInfo;
-import model.MailInfo;
+import interfaces.MailProcLogic;
+import model.FolderInfoImap;
+import model.MailInfoImap;
 import model.UserInfo;
 import model.TaskInfo;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,21 @@ import java.util.List;
 /**
  * Created by hechengjin on 18-1-18.
  */
-public class MailProcLogicIMAPMongoImpl implements IMailProcLogic {
+@Component
+public class MailProcLogicIMAPMongoImpl implements MailProcLogic {
+//    @Autowired
+//    private FolderInfoImapService folderInfoImapService;
+
+    MailProcLogicIMAPMongoImpl(){
+//        folderInfoImapService = new FolderInfoImapServiceImpl();
+    }
+
     public void setUserInfo(UserInfo userInfo) {
         this.taskInfo.setUserＮame(userInfo.getFullname());
         this.taskInfo.setLimt(1024);
     }
 
-    public void setFolderInfo(FolderInfo folderInfo) {
+    public void setFolderInfo(FolderInfoImap folderInfo) {
         this.taskInfo.setPath(folderInfo.getPath());
         this.taskInfo.setFolderＮame(folderInfo.getFolderＮame());
     }
@@ -39,41 +48,41 @@ public class MailProcLogicIMAPMongoImpl implements IMailProcLogic {
         return false;
     }
 
-    public boolean folderExist(FolderInfo fetchFolderInfo) {
+    public boolean folderExist(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public boolean addFolder(FolderInfo fetchFolderInfo) {
+    public boolean addFolder(FolderInfoImap fetchFolderInfo) {
         return true;
     }
 
-    public boolean delFolder(FolderInfo fetchFolderInfo) {
+    public boolean delFolder(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public List<MailInfo> getFolderMails(FolderInfo folderInfo) {
-        List<MailInfo> FolderInfoＬist = new ArrayList<MailInfo>();
+    public List<MailInfoImap> getFolderMails(FolderInfoImap folderInfo) {
+        List<MailInfoImap> FolderInfoＬist = new ArrayList<MailInfoImap>();
         return FolderInfoＬist;
     }
 
-    public boolean renameFolder(FolderInfo fetchFolderInfo) {
+    public boolean renameFolder(FolderInfoImap fetchFolderInfo) {
         return false;
     }
 
-    public List<FolderInfo> getＡllＦolder(UserInfo userInfo) {
-        List<FolderInfo> FolderInfoＬist = new ArrayList<FolderInfo>();
+    public List<FolderInfoImap> getＡllＦolder(UserInfo userInfo) {
+        List<FolderInfoImap> FolderInfoＬist = new ArrayList<FolderInfoImap>();
         return FolderInfoＬist;
     }
 
-    public boolean mailExist(MailInfo mailInfo) {
+    public boolean mailExist(MailInfoImap mailInfo) {
         return false;
     }
 
-    public boolean addMail(MailInfo mailInfo) {
+    public boolean addMail(MailInfoImap mailInfo) {
         return false;
     }
 
-    public boolean delMail(MailInfo mailInfo) {
+    public boolean delMail(MailInfoImap mailInfo) {
         return false;
     }
 
@@ -82,6 +91,10 @@ public class MailProcLogicIMAPMongoImpl implements IMailProcLogic {
     }
 
     public void delFlag() {
+
+    }
+
+    public void close() {
 
     }
 }

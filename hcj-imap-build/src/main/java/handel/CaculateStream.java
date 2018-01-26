@@ -1,6 +1,6 @@
 package handel;
 
-import interfaces.IMailProcLogic;
+import interfaces.MailProcLogic;
 
 import java.io.*;
 
@@ -8,13 +8,13 @@ import java.io.*;
  * Created by hechengjin on 18-1-19.
  */
 public class CaculateStream extends FileOutputStream {
-    IMailProcLogic mailＰroclogic = null;
+    MailProcLogic mailＰroclogic = null;
 
-    public IMailProcLogic getMailＰroclogic() {
+    public MailProcLogic getMailＰroclogic() {
         return mailＰroclogic;
     }
 
-    public void setMailＰroclogic(IMailProcLogic mailＰroclogic) {
+    public void setMailＰroclogic(MailProcLogic mailＰroclogic) {
         this.mailＰroclogic = mailＰroclogic;
     }
 

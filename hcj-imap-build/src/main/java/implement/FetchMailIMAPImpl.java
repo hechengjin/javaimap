@@ -2,11 +2,12 @@ package implement;
 
 import common.ErrorCode;
 import common.ErrorMessage;
-import interfaces.IFetchMail;
-import interfaces.IFetchMailProcess;
-import interfaces.IMailProcLogic;
+import interfaces.FetchMail;
+import interfaces.FetchMailProcess;
+import interfaces.MailProcLogic;
 import model.ProxyInfo;
 import model.UserInfo;
+import org.springframework.stereotype.Component;
 
 import javax.mail.AuthenticationFailedException;
 import javax.mail.MessagingException;
@@ -16,9 +17,11 @@ import java.io.IOException;
 /**
  * Created by hechengjin on 18-1-17.
  */
-public class FetchMailIMAP implements IFetchMail{
-    IFetchMailProcess fetchMail = null;
-    IMailProcLogic mailＰroclogic = null;
+@Component
+public class FetchMailIMAPImpl implements FetchMail {
+
+    FetchMailProcess fetchMail = null;
+    MailProcLogic mailＰroclogic = null;
     public ErrorMessage fetchMail(UserInfo userInfo, ProxyInfo proxyInfo) {
         ErrorMessage errorMessage = null;
         mailＰroclogic = new MailProcLogicIMAPMongoImpl();

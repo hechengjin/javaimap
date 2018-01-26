@@ -7,7 +7,7 @@ import model.UserInfo;
 /**
  * Created by hechengjin on 18-1-17.
  */
-public abstract interface IFetchMail {
+public abstract interface FetchMail {
     UserInfo userInfo = new UserInfo();
     ProxyInfo proxyInfo = new ProxyInfo();
     //

@@ -7,8 +7,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class MimeMessageEx {
     MimeMessage mimeMessage;
-    MailInfo mailInfo;
-    FolderInfo folderInfo;
+    MailInfoImap mailInfo;
+    FolderInfoImap folderInfo;
 
     public MimeMessage getMimeMessage() {
         return mimeMessage;
@@ -18,19 +18,19 @@ public class MimeMessageEx {
         this.mimeMessage = mimeMessage;
     }
 
-    public MailInfo getMailInfo() {
+    public MailInfoImap getMailInfo() {
         return mailInfo;
     }
 
-    public void setMailInfo(MailInfo mailInfo) {
+    public void setMailInfo(MailInfoImap mailInfo) {
         this.mailInfo = mailInfo;
     }
 
-    public FolderInfo getFolderInfo() {
+    public FolderInfoImap getFolderInfo() {
         return folderInfo;
     }
 
-    public void setFolderInfo(FolderInfo folderInfo) {
+    public void setFolderInfo(FolderInfoImap folderInfo) {
         this.folderInfo = folderInfo;
     }
 }
